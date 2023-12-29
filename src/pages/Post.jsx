@@ -10,9 +10,9 @@ export default function Post() {
     const { slug } = useParams();
     const navigate = useNavigate();
 
-    const userData = useSelector((state) => state.auth.useData);
+    const userData = useSelector((state) => state.auth.userData);
 
-    const isAuthor = post && userData ? post.userId == userData.$id : true;
+    const isAuthor = post && userData ? post.userId == userData.$id :false;
 
     useEffect(() => {
         if (slug) {
@@ -40,7 +40,7 @@ export default function Post() {
             <Container className="flex justify-center items-center ">
                 <div className="flex flex-col justify-center items-center w-[85%] overflow-hidden  ">
                     <img
-                        className="h-[25rem] w-[50rem] object-contain "
+                        className="h-[15rem] w-[90%] object-cover rounded-md shadow-lg shadow-black/60"
                         src={dbService.getFilePreview(post.featuredimg)}
                         alt={post.title}
                     />
