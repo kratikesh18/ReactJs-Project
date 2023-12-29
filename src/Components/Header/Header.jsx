@@ -58,7 +58,7 @@ function Header() {
                 ) : null
               )}
               {authStatus && (
-                <li className="flex bg-red-700 text-white justify-between items-center">
+                <li className="flex bg-red-700 rounded-full text-white justify-between items-center">
                   <LogoutBtn  />
                 </li>
               )}

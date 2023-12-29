@@ -11,7 +11,7 @@ function PostCard({
   return (
 
     <Link to={`/post/${$id}`}>
-        <div className='flex flex-col justify-around items-center bg-gray-400 h-[15rem] w-[15rem]   border-black border shadow-lg rounded-md'>
+        <div className='flex flex-col justify-around items-center py-2 bg-gray-400/40 text-black/90 h-[15rem] w-[15rem]   border-black border shadow-lg rounded-md'>
 
             <div className='flex justify-center h-40 '>
                 <img src= {dbService.getFilePreview(featuredimg)} 
