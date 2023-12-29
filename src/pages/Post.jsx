@@ -13,6 +13,7 @@ export default function Post() {
     const userData = useSelector((state) => state.auth.userData);
 
     const isAuthor = post && userData ? post.userId == userData.$id :false;
+    const userName = userData.name;
 
     useEffect(() => {
         if (slug) {
@@ -37,26 +38,29 @@ export default function Post() {
     
     return post ? (
         <div>
-            <Container className="flex justify-center items-center ">
-                <div className="flex flex-col justify-center items-center w-[85%] overflow-hidden  ">
+            <Container className="flex justify-center items-center  ">
+                <div className="flex flex-col justify-center items-center w-[85%] overflow-hidden  gap-4  ">
                     <img
                         className="h-[15rem] w-[90%] object-cover rounded-md shadow-lg shadow-black/60"
                         src={dbService.getFilePreview(post.featuredimg)}
                         alt={post.title}
                     />
 
+              
+                    <div>
+                        <h1 className="text-xl font-semibold ">{post.title}</h1>
+                    </div>
+                    <div className="text-base font-medium"> {parse(post.content)} </div>
+
                     {isAuthor && (
                         <div className="flex gap-4 mt-4">
                             <Link to={`/edit-post/${post.$id}`}>
                                 <Button>Edit</Button>
                             </Link>
-                            <Button onClick={deletePost}>Delete</Button>
+                            <Button className="rounded-md " onClick={deletePost}>Delete</Button>
                         </div>
                     )}
-                    <div>
-                        <h1>{post.title}</h1>
-                    </div>
-                    <div> {parse(post.content)} </div>
+                    <div>CurrentUser is : {userName}</div>
                 </div>
             </Container>
         </div>
