@@ -12,13 +12,15 @@ function PostCard({
 
     <Link to={`/post/${$id}`}>
         <div className='flex flex-col justify-around items-center bg-gray-400 h-[15rem] w-[15rem]   border-black border shadow-lg rounded-md'>
-            <div className=' w-[10rem]'>
 
+            <div className='flex justify-center h-40 '>
                 <img src= {dbService.getFilePreview(featuredimg)} 
                 className='rounded-md w-[90%] object-fill '
                 alt={title}/>
             </div>
-            <h2 className="text-xl ">{title}</h2>
+
+            <h2 className="text-xl font-bold ">{title}</h2>
+            <p className='text-center'>Lorem, ipsum dolor sit amet consectetur </p>
         </div>
     </Link>
   )
