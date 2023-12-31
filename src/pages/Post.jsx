@@ -47,10 +47,12 @@ export default function Post() {
                     />
 
               
-                    <div>
-                        <h1 className="text-xl font-semibold ">{post.title}</h1>
+                    <div className="w-full ">
+                        <h1 className="text-xl font-bold ">{post.title}</h1>
                     </div>
-                    <div className="text-base font-medium"> {parse(post.content)} </div>
+                    <div className="browser-css"> 
+                        {parse(post.content)} 
+                    </div>
 
                     {isAuthor && (
                         <div className="flex gap-4 mt-4">

@@ -39,26 +39,26 @@ function Header() {
   return (
     <header>
       <Container className="flex justify-center">
-        <nav className="flex shadow-xl shadow-black/20 bg-white rounded-md w-[95%] text-black p-[1rem] justify-between items-center">
+        <nav className="flex   shadow-xl shadow-black/20 rounded-md  text-black p-[1rem] justify-between items-center  md:gap-1  md:bg-white w-full md:w-[95%]">
           <div>
             <Link to="/">
               <Logo />
             </Link>
           </div>
           <div className="">
-            <ul className=" flex gap-[1rem] text-xl">
+            <ul className=" flex md:gap-[1rem] md:text-xl ">
               {navItems.map((item) =>
                 item.active ? (
                   <li key={item.name}>
                     <button
-                     className="px-6 py-2 duration-200 hover:bg-gray-200  rounded-full" onClick={() => navigate(item.slug)}>
+                     className="px-2 py-2 duration-200 hover:bg-gray-200  rounded-full" onClick={() => navigate(item.slug)}>
                       {item.name}
                     </button>
                   </li>
                 ) : null
               )}
               {authStatus && (
-                <li className="flex bg-red-700 rounded-full text-white justify-between items-center">
+                <li className="flex bg-red-700 rounded-full text-white justify-between items-center ">
                   <LogoutBtn  />
                 </li>
               )}

@@ -16,7 +16,7 @@ function LogoutBtn(
     }
   return (
     <button 
-    className="px-6 py-2 hover:bg-black/30 rounded-full"
+    className="px-2 md:px-6 py-2 hover:bg-black/30 rounded-full"
     onClick={logoutHandler}>Logout</button>
   )
 }
