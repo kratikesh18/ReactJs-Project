@@ -28,7 +28,7 @@ function Home() {
   }
   return (
     <div className="flex justify-center  ">
-      <Container className="w-[95%] bg-[#e7e7e7]">
+      <Container className="w-[95%] justify-center bg-[#e7e7e7] flex-wrap">
         {posts.map((post) => (
           <div key={post.$id}
           className=""
