@@ -19,19 +19,17 @@ function AllPosts() {
     })
 
   return (
-    <div className='flex justify-center'>
-        <Container className=' flex justify-center w-[90%] bg-black/10'>
-            {
-                posts.map((post)=>(
-                    <div
-                    className='flex '  
-                    key={post.$id}>
-                        <PostCard {...post}/>
-                    </div>
-                ))
-            }
-        </Container>
-    </div>
+    <div className="flex justify-center items-center my-4  ">
+    <Container className="w-[92%] justify-center bg-[#e7e7e7] flex-wrap py-8  drop-shadow-lg   ">
+      {posts.map((post) => (
+        <div key={post.$id}
+        className=""
+        >
+          <PostCard {...post} />
+        </div>
+      ))}
+    </Container>
+  </div>
   )
 }
 

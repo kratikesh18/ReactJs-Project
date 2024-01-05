@@ -37,9 +37,9 @@ function Header() {
     },
   ];
   return (
-    <header>
+    <header >
       <Container className="flex justify-center">
-        <nav className="flex shadow-xl shadow-black/20 rounded-md  text-black p-[1rem] justify-between items-center  md:gap-1  md:bg-white w-full md:w-[95%]">
+        <nav className="flex shadow-xl drop-shadow-lg/20 rounded-md text-black p-[1rem] justify-between items-center  md:gap-1  md:bg-white w-full md:w-[95%]">
           <div>
             <Link to="/">
               <Logo />
