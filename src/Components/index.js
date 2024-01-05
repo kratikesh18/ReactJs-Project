@@ -12,6 +12,7 @@ import PostForm from './PostForm/PostForm'
 import AuthLayout from './AuthLayout'
 import Button from './Button'
 import Input from './Input'
+import Greet from "./Greet";
 
 export{
     Header,
@@ -27,5 +28,6 @@ export{
     PostForm,
     AuthLayout,
     Button,
-    Input
+    Input,
+    Greet
 }
