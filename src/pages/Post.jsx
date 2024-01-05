@@ -41,7 +41,7 @@ export default function Post() {
             <Container className="flex justify-center items-center  ">
                 <div className="flex flex-col justify-center items-center w-[85%] overflow-hidden  gap-4  ">
                     <img
-                        className="h-[15rem] w-[90%] object-cover rounded-md shadow-lg shadow-black/60"
+                        className="h-[15rem] w-[90%] object-cover object-top rounded-md shadow-lg shadow-black/60"
                         src={dbService.getFilePreview(post.featuredimg)}
                         alt={post.title}
                     />
