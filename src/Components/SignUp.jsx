@@ -32,6 +32,8 @@ function SignUp() {
 
   return (
     <div className=" py-4 bg-slate-700 text-white">
+
+      
       <div className="flex flex-col gap-[1rem] justify-center items-center">
         <div>
           <span className="">
