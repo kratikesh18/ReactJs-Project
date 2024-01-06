@@ -29,7 +29,7 @@ function Home() {
   }
   return (
     <div className="flex justify-center items-center my-4 flex-col py-8  w-[92%] drop-shadow-lg mx-auto   bg-[#e7e7e7] ">
-        <Greet userName={userData.name}/>
+        <Greet  aboutPage={"Here is some fresh updates for you"}/>
       <Container className=" w-full justify-center flex-wrap     ">
         {posts.map((post) => (
           <div key={post.$id}

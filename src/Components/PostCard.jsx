@@ -16,7 +16,8 @@ function PostCard({
             <div className='flex justify-center h-40 overflow-hidden w-full '>
                 <img src= {dbService.getFilePreview(featuredimg)} 
                 className='rounded-md w-[90%] object-center'
-                alt={title}/>
+                alt={title}
+                loading='lazy'/>
             </div>
 
             <h2 className="text-xl font-bold ">{title}</h2>
