@@ -10,15 +10,16 @@ function PostCard({
 }) {
   return (
 
-    <Link to={`/post/${$id}`}>
-        <div className='flex flex-col justify-around items-center py-2 bg-gray-400/40 text-black/90 h-[15rem] w-[15rem]   border-black border shadow-lg rounded-md'>
+    <Link to={`/post/${$id}`} className='flex justify-center'>
+        <div className='flex w-[80%] flex-col  md:justify-around items-center py-2 bg-gray-400/40 text-black/90 h-[15rem] md:w-[15rem]   border-black border shadow-lg rounded-md'>
           
-            <div className='flex justify-center h-40 overflow-hidden w-full '>
+            <div className='flex justify-center  overflow-hidden w-full '>
                 <img src= {dbService.getFilePreview(featuredimg)} 
-                className='rounded-md w-[90%] object-center'
+                className='rounded-md w-[90%] object-center aspect-auto'
                 alt={title}
-                loading='lazy'/>
-            </div>
+                loading='lazy'
+                />
+            </div>  
 
             <h2 className="text-xl font-bold ">{title}</h2>
             <p className='text-center'>Lorem, ipsum dolor sit amet consectetur </p>
