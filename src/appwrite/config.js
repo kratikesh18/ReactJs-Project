@@ -24,7 +24,7 @@ export class DBservice{
     }
 
     //and its some database operations 
-    async createPost({title , slug , content , featuredimg , status , userId ,author} ){
+    async createPost({title , slug , content , featuredimg , status , userId ,author , subPara} ){
         try {
             return await this.databases.createDocument(
                 conf.appwriteDatabaseId,
@@ -36,7 +36,8 @@ export class DBservice{
                     featuredimg, 
                     status,
                     userId,
-                    author
+                    author,
+                    subPara
                 }
             )            
         } catch (error) {

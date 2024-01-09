@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Button, Input, Select, RTE } from "../index";
 import dbService from "../../appwrite/config";
@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 
 
 function PostForm({ post }) {
+  
   const { register, handleSubmit, watch, setValue, control, getValues } =
     useForm({
       defaultValues: {
@@ -23,8 +24,8 @@ function PostForm({ post }) {
 
   const submit = async (data) => {
     if (post) {
-      const file = data.image[0] ?
-        await dbService.uploadFile(data.image[0]) : null;
+      const file = data.image[0]?
+        await dbService.uploadFile(data.image[0]): null;
 
       if (file) {
         dbService.deleteFile(post.featuredimg);
@@ -89,57 +90,68 @@ function PostForm({ post }) {
 
   return (
 
-    <form onSubmit={handleSubmit(submit)} className="flex flex-wrap bg-slate-200">
-      <div className="w-2/3 px-2">
-      <div className="bg-violet-400 " >
+    <form onSubmit={handleSubmit(submit)} className="flex flex-col md:flex-row p-4 flex-wrap items-center bg-slate-200/50 w-[95%] mx-auto">
+      <div className="w-full md:w-2/3 px-2">
+      <div className=" flex flex-col gap-4 py-4 " >
         <Input
           label="Title :"
-          placeholder="Title"
-          className="mb-4"
+          placeholder=" Post Title"
+         className=" flex justify-between gap-[2em] md:w-[70%]"
           {...register("title", { required: true })}
         />
+        <Input
+          label="Desc :"
+          placeholder="Tagline"
+         className=" flex justify-between gap-[2em] md:w-[70%]"
+          {...register("subPara", { required: true })}
+        />
+
          <Input
           value={userData.name}
           label="Author:"
           placeholder="author: "
-          className="mb-4"
+          className=" flex justify-between gap-[2em] md:w-[70%]"
+          readOnly = {true}
           {...register("author", { required: true })}
         />
        
         <Input
           label="Slug :"
           placeholder="Slug"
-          className="mb-4"
+          className=" hidden"
           {...register("slug", { required: true })}
           onInput={(e) => {
             setValue("slug", slugTransform(e.currentTarget.value), { shouldValidate: true });
           }}
         />
+
       </div>
         <RTE label="Content :" name="content" control={control} defaultValue={getValues("content")} />
       </div>
-      <div className="w-1/3 px-2">
+
+      <div className="w-full md:w-1/3 px-2 ">
         <Input
           label="Featured Image :"
           type="file"
           className="mb-4"
           accept="image/png, image/jpg, image/jpeg, image/gif"
-          {...register("image", { required: !post })}
+          {...register("featuredimage", { required: !post })}
         />
+
         {post && (
           <div className="w-full mb-4">
             <img
               src={dbService.getFilePreview(post.featuredimg)}
               alt={post.title}
-              className="rounded-lg"
+              className="rounded-lg"  
             />
           </div>
         )}
+
         <Select
           options={["active", "inactive"]}
           label="Status"
           className="mb-4"
-
           {...register("status", { required: true })}
         />
 
