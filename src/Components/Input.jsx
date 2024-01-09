@@ -18,7 +18,8 @@ const Input = forwardRef(function Input({
             </label>
             }
             <input type={type}
-                className={` border-black rounded-md bg-transparent border px-2 ${className}`}
+                className={`
+                border-zinc-800 rounded-md bg-transparent border px-2 ${className}`}
                 ref={ref}
                 {...props}
                 id={id}

@@ -29,7 +29,8 @@ function Login() {
   };
 
   return ( 
-    <div className="w-full h-[30rem] bg-[#fafafa] flex flex-col justify-center  ">
+    <div className="w-full h-[30rem] bg-[#fafafa] flex flex-col justify-center">
+
       <div className="  text-black flex flex-col py-4 gap-4 justify-center items-center">
         <div>
           <span>
@@ -73,7 +74,8 @@ function Login() {
                     required:true
                 })}
                 />
-                <Button className="w-fit" type="submit">Login</Button>
+                <Button className="bg-black rounded-md hover:scale-105 hover:shadow-lg hover:bg-black/85
+                duration-75" type="submit">Login</Button>
             </div>
         </form>
       </div>

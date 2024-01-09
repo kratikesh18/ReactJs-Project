@@ -1,11 +1,15 @@
 import { Client, Databases, ID, Storage, Query } from "appwrite";
+import {useSelector} from 'react-redux'
 import conf from "../Confo/conf";
+
+
 
 export class DBservice{
     // this is having client and its database with bucket
     client = new Client();
     databases;
     bucket;
+
 
     //creating the constructor 
     constructor(){
@@ -20,7 +24,7 @@ export class DBservice{
     }
 
     //and its some database operations 
-    async createPost({title , slug , content , featuredimg , status , userId}){
+    async createPost({title , slug , content , featuredimg , status , userId ,author} ){
         try {
             return await this.databases.createDocument(
                 conf.appwriteDatabaseId,
@@ -31,7 +35,8 @@ export class DBservice{
                     content,
                     featuredimg, 
                     status,
-                    userId
+                    userId,
+                    author
                 }
             )            
         } catch (error) {

@@ -5,6 +5,7 @@ import dbService from "../../appwrite/config";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
+
 function PostForm({ post }) {
   const { register, handleSubmit, watch, setValue, control, getValues } =
     useForm({
@@ -18,6 +19,7 @@ function PostForm({ post }) {
 
   const navigate = useNavigate();
   const userData = useSelector((state) => state.auth.userData);
+
 
   const submit = async (data) => {
     if (post) {
@@ -37,7 +39,9 @@ function PostForm({ post }) {
       if (dbPost) {
         navigate(`/post/${dbPost.$id}`);
       }
+
     } else {
+
       const file = await dbService.uploadFile(data.image[0])
 
       if (file) {
@@ -45,7 +49,8 @@ function PostForm({ post }) {
         data.featuredimg = fileId
         const dbPost = await dbService.createPost({
           ...data,
-          userId: userData.$id
+          userId: userData.$id,
+          author:userData.name
         })
         if (dbPost) {
           navigate(`/post/${dbPost.$id}`)
@@ -83,14 +88,24 @@ function PostForm({ post }) {
   }, [watch, slugTransform, setValue])
 
   return (
+
     <form onSubmit={handleSubmit(submit)} className="flex flex-wrap bg-slate-200">
       <div className="w-2/3 px-2">
+      <div className="bg-violet-400 " >
         <Input
           label="Title :"
           placeholder="Title"
           className="mb-4"
           {...register("title", { required: true })}
         />
+         <Input
+          value={userData.name}
+          label="Author:"
+          placeholder="author: "
+          className="mb-4"
+          {...register("author", { required: true })}
+        />
+       
         <Input
           label="Slug :"
           placeholder="Slug"
@@ -100,11 +115,11 @@ function PostForm({ post }) {
             setValue("slug", slugTransform(e.currentTarget.value), { shouldValidate: true });
           }}
         />
+      </div>
         <RTE label="Content :" name="content" control={control} defaultValue={getValues("content")} />
       </div>
       <div className="w-1/3 px-2">
         <Input
-          
           label="Featured Image :"
           type="file"
           className="mb-4"

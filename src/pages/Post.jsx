@@ -40,29 +40,44 @@ export default function Post() {
         <div>
             <Container className="flex justify-center items-center  ">
                 <div className="flex flex-col justify-center items-center w-[85%] overflow-hidden  gap-4  ">
+                    <div className="rounded-md shadow-2xl overflow-hidden">
                     <img
-                        className="h-[15rem] w-[90%] object-cover object-top rounded-md shadow-lg shadow-black/60"
-                        src={dbService.getFilePreview(post.featuredimg)}
-                        alt={post.title}
-                    />
+                        className="h-[15rem] w-full  shadow-black/60"
 
-              
-                    <div className="w-full ">
-                        <h1 className="text-xl font-bold ">{post.title}</h1>
+                        src={dbService.getFilePreview(post.featuredimg)}
+
+                        alt={post.title}
+                        />
                     </div>
-                    <div className="browser-css"> 
-                        {parse(post.content)} 
-                    </div>
+                    
+
+                    <div className="w-[90%]">
+                        
+                        <div>
+                            <h1 className="text-xl font-bold ">{post.title}</h1>
+                            <p className="px-1 font-semibold text-gray-600">By, <span className="italic font-bold">{post.author}</span></p>
+                        </div>
+
+                        <div className="browser-css block"> 
+                            {parse(post.content)} 
+                        </div>
+                        
+                    </div>            
 
                     {isAuthor && (
-                        <div className="flex gap-4 mt-4">
+                        <div className="flex flex-col gap-[0.2rem]"> 
+                            <h4>Hey {userData.name} do you want   </h4> 
+                        <div className="flex gap-4 ">
+
                             <Link to={`/edit-post/${post.$id}`}>
-                                <Button>Edit</Button>
+                                <Button className="bg-purple-800 px-5 rounded-md">Edit</Button>
                             </Link>
-                            <Button className="rounded-md " onClick={deletePost}>Delete</Button>
+
+                            <Button className="rounded-md bg-red-800"  onClick={deletePost}>Delete</Button>
                         </div>
+                    </div>
                     )}
-                    <div>CurrentUser is : {userName}</div>
+                    <div className=" text-sm font-extralight">CurrentUser is : {userName}</div>
                 </div>
             </Container>
         </div>

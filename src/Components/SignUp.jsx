@@ -31,28 +31,26 @@ function SignUp() {
 
 
   return (
-    <div className=" py-4 bg-slate-700 text-white">
+    <div className=" w-full h-[30rem] bg-[#fafafa] flex flex-col justify-center   ">
 
-      
-      
-      <div className="flex flex-col gap-[1rem] justify-center items-center">
+      <div className=" text-black flex flex-col py-4 gap-4 justify-center items-center">
         <div>
           <span className="">
             < Logo />
           </span>
         </div>
 
-        <h2>Create an Account</h2>
-        <p>
+        <h2 className="text-2xl">Create an Account</h2>
+        <p className="text-base font-semibold">
             Have an account ?&nbsp;
-          <Link className="underline " to="/login">Login</Link>
+          <Link className="underline" to="/login">Login</Link>
         </p>
-        {error && <p>{error}</p>}
+        {error && <p className="text-red-600 font-bold">{error}</p>}
 
         <form 
           className="w-full flex justify-center items-center"
         onSubmit={handleSubmit(create)}>
-          <div className="flex flex-col gap-[0.8rem] justify-center items-center  
+          <div className="flex flex-col gap-4 justify-center items-center  
           ">
             <Input
             className="mx-2 px-2"
@@ -90,7 +88,11 @@ function SignUp() {
               })}
             />
 
-            <Button type="submit">Sign Up</Button>
+            <Button 
+            className="
+            bg-black rounded-md hover:scale-105 hover:shadow-lg hover:bg-black/85
+            duration-75
+            " type="submit">Sign Up</Button>
           </div>
         </form>
       </div>
