@@ -14,6 +14,7 @@ export default function Post() {
 
     const isAuthor = post && userData ? post.userId == userData.$id :false;
     const userName = userData.name;
+    const isAdmin = post && userData ? userName === "Kartikesh":false;
 
     useEffect(() => {
         if (slug) {
@@ -58,13 +59,13 @@ export default function Post() {
                             <p className="px-1 font-semibold text-gray-600">By, <span className="italic font-bold">{post.author}</span></p>
                         </div>
 
-                        <div className="browser-css block"> 
+                        <div className=" browser-css block"> 
                             {parse(post.content)} 
                         </div>
                         
                     </div>            
 
-                    {isAuthor && (
+                    {(isAuthor || isAdmin )&&  (
                         <div className="flex flex-col gap-[0.2rem]"> 
                             <h4>Hey {userData.name} do you want   </h4> 
                         <div className="flex gap-4 ">
@@ -80,6 +81,9 @@ export default function Post() {
                     <div className=" text-sm font-extralight">CurrentUser is : {userName}</div>
                 </div>
             </Container>
+               {/* <div className=" browser-css  "> 
+               {parse(post.content)} 
+           </div> */}
         </div>
     ) : null;
 }

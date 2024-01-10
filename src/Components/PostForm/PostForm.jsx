@@ -45,7 +45,7 @@ function PostForm({ post }) {
 
     } else {
 
-      const file = await dbService.uploadFile(data.image[0])
+      const file = await dbService.uploadFile(data.image)
 
       if (file) {
         const fileId = file.$id
