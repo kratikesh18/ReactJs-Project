@@ -12,6 +12,7 @@ function PostForm({ post }) {
     useForm({
       defaultValues: {
         title: post?.title || "",
+        subPara: post?.subPara || "lorem",
         slug: post?.$id || "",
         content: post?.content || "",
         status: post?.status || "active",
@@ -24,22 +25,23 @@ function PostForm({ post }) {
 
   const submit = async (data) => {
     if (post) {
-      const file = data.image[0]?
-        await dbService.uploadFile(data.image[0]): null;
+      console.log(data);
+      const file = data.image? await dbService.uploadFile(data.image): null;
 
-      if (file) {
-        dbService.deleteFile(post.featuredimg);
-      }
 
-      const dbPost = await dbService.updatePost
-        (post.$id, {
-          ...data,
-          featuredimg: file ? file.$id : undefined,
-        })
+        if (file) {
+          dbService.deleteFile(post.featuredimg);
+        }
 
-      if (dbPost) {
-        navigate(`/post/${dbPost.$id}`);
-      }
+        const dbPost = await dbService.updatePost
+          (post.$id, {
+            ...data,
+            featuredimg: file ? file.$id : undefined,
+          })
+
+          if (dbPost) {
+            navigate(`/post/${dbPost.$id}`);
+          }
 
     } else {
 
@@ -93,6 +95,7 @@ function PostForm({ post }) {
     <form onSubmit={handleSubmit(submit)} className="flex flex-col md:flex-row p-4 flex-wrap items-center bg-slate-200/50 w-[95%] mx-auto">
       <div className="w-full md:w-2/3 px-2">
       <div className=" flex flex-col gap-4 py-4 " >
+
         <Input
           label="Title :"
           placeholder=" Post Title"

@@ -8,6 +8,7 @@ function EditPost() {
     const {slug} = useParams()
     const navigate = useNavigate();
 
+
     useEffect(()=>{
         if(slug){
             dbService.getPost(slug).then((post)=>{
@@ -29,4 +30,4 @@ function EditPost() {
     ):null
 }
 
-export default EditPost
+export default EditPost;

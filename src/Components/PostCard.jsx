@@ -6,7 +6,8 @@ import {Link} from 'react-router-dom'
 function PostCard({
     $id,
     title, 
-    featuredimg
+    featuredimg,
+    subPara
 }) {
   return (
 
@@ -22,7 +23,7 @@ function PostCard({
             </div>  
 
             <h2 className="text-xl font-bold ">{title}</h2>
-            <p className='text-center'>Lorem, ipsum dolor sit amet consectetur </p>
+            <p className='text-center'>{subPara}</p>
         </div>
     </Link>
   )

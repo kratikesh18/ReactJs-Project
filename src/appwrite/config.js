@@ -24,7 +24,7 @@ export class DBservice{
     }
 
     //and its some database operations 
-    async createPost({title , slug , content , featuredimg , status , userId ,author , subPara} ){
+    async createPost({title , slug , content , featuredimg , status , userId ,author , subPara,} ){
         try {
             return await this.databases.createDocument(
                 conf.appwriteDatabaseId,
@@ -45,7 +45,7 @@ export class DBservice{
         }
     }
     
-    async updatePost(slug, {title, content, featuredimg,status}) {
+    async updatePost(slug, {title, content, featuredimg,status,subPara,author}) {
         try{
             return await  this.databases.updateDocument(
                 conf.appwriteDatabaseId,
@@ -55,7 +55,9 @@ export class DBservice{
                     title,
                     content,
                     featuredimg,
-                    status
+                    status,
+                    subPara,
+                    author
                 }
             )
         }   
