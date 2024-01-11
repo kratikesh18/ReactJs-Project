@@ -136,6 +136,7 @@ function PostForm({ post }) {
           className="mb-4"
           accept="image/png, image/jpg, image/jpeg, image/gif"
           {...register("image", { required: !post })}
+                      // this was error iamge is required for the setting image in form 
         />
 
         {post && (
