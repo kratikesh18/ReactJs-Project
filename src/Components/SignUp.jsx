@@ -53,7 +53,7 @@ function SignUp() {
           <div className="flex flex-col gap-4 justify-center items-center  
           ">
             <Input
-            className="mx-2 px-2"
+            className="min-w-[20rem] flex justify-between"
               label="Name:"
               type="text"
               placeholder="Full Name"
@@ -63,7 +63,7 @@ function SignUp() {
             />
 
             <Input
-              className="mx-2 px-2"
+              className="min-w-[20rem] flex justify-between"
               label="Email:"
               placeholder="Enter Your Email"
               type="email"
@@ -79,7 +79,7 @@ function SignUp() {
             />
 
             <Input
-              className="mx-2 px-2"
+              className="min-w-[20rem] flex justify-between"
               label="Password"
               type="password"
               placeholder="Enter your Password"

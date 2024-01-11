@@ -48,13 +48,13 @@ function Login() {
         {error && <p className="text-red-600 font-bold">{error}</p>}
 
         <form 
-          className="w-[24rem] flex flex-col justify-center items-center"
+          className=" flex flex-col justify-center items-center"
           onSubmit={handleSubmit(login)}
         >
-            <div className="flex w-[80%] flex-col gap-4 justify-center items-center" >
+            <div className="flex   flex-col gap-4 justify-center items-center" >
 
                 <Input
-                className=" " 
+                className="min-w-[20rem] flex justify-between " 
                 label = "Email:"
                 placeholder = "Enter Your Email"
                 type = "email"
@@ -67,6 +67,7 @@ function Login() {
                 />
 
                 <Input
+                className="min-w-[20rem] flex justify-between"
                 label = "Password:"
                 type = "password"
                 placeholder = "Enter your Password"
