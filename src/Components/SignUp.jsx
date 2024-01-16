@@ -49,7 +49,7 @@ function SignUp() {
 
         <form 
           className="w-full flex justify-center items-center"
-        onSubmit={handleSubmit(create)}>
+          onSubmit={handleSubmit(create)}>
           <div className="flex flex-col gap-4 justify-center items-center  
           ">
             <Input

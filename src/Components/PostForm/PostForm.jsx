@@ -10,7 +10,7 @@ function PostForm({ post }) {
     useForm({
       defaultValues: {
         title: post?.title || "",
-        subPara: post?.subPara || "lorem",
+        subPara: post?.subPara || "",
         slug: post?.$id || "",
         content: post?.content || "",
         status: post?.status || "active",
@@ -130,14 +130,7 @@ function PostForm({ post }) {
       </div>
 
       <div className="w-full md:w-1/3 px-2 ">
-        <Input
-          label="Featured Image :"
-          type="file"
-          className="mb-4"
-          accept="image/png, image/jpg, image/jpeg, image/gif"
-          {...register("image", { required: !post })}
-                      // this was error iamge is required for the setting image in form 
-        />
+   
 
         {post && (
           <div className="w-full mb-4">
@@ -148,6 +141,14 @@ function PostForm({ post }) {
             />
           </div>
         )}
+        <Input
+          label="Featured Image :"
+          type="file"
+          className="mb-4"
+          accept="image/png, image/jpg, image/jpeg, image/gif"
+          {...register("image", { required: !post })}
+                      // this was error iamge is required for the setting image in form 
+        />
 
         <Select
           options={["active", "inactive"]}

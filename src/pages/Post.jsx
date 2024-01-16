@@ -57,6 +57,7 @@ export default function Post() {
                         <div>
                             <h1 className="text-xl font-bold ">{post.title}</h1>
                             <p className="px-1 font-semibold text-gray-600">By, <span className="italic font-bold">{post.author}</span></p>
+                            <p className="px-1 font-semibold text-gray-600">at, <span className="italic font-bold">{post.CreatedDate}</span></p>
                         </div>
 
                         <div className=" browser-css block"> 

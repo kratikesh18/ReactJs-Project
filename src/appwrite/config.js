@@ -1,10 +1,10 @@
 import { Client, Databases, ID, Storage, Query } from "appwrite";
-import {useSelector} from 'react-redux'
+import { useSelector } from 'react-redux'
 import conf from "../Confo/conf";
 
+const CreatedDate = new Date().toUTCString();
 
-
-export class DBservice{
+export class DBservice {
     // this is having client and its database with bucket
     client = new Client();
     databases;
@@ -12,10 +12,10 @@ export class DBservice{
 
 
     //creating the constructor 
-    constructor(){
+    constructor() {
         this.client
-        .setEndpoint(conf.appwriteUrl)
-        .setProject(conf.appwriteProjectId)
+            .setEndpoint(conf.appwriteUrl)
+            .setProject(conf.appwriteProjectId)
         // now creating its database 
         this.databases = new Databases(this.client)
         // creating the bucket 
@@ -24,30 +24,31 @@ export class DBservice{
     }
 
     //and its some database operations 
-    async createPost({title , slug , content , featuredimg , status , userId ,author , subPara,} ){
+    async createPost({ title, slug, content, featuredimg, status, userId, author, subPara, }) {
         try {
             return await this.databases.createDocument(
                 conf.appwriteDatabaseId,
                 conf.appwriteCollectionId,
                 slug,
                 {
-                    title,  
+                    title,
                     content,
-                    featuredimg, 
+                    featuredimg,
                     status,
                     userId,
                     author,
-                    subPara
+                    subPara,
+                    CreatedDate
                 }
-            )            
+            )
         } catch (error) {
-            console.log("Error Occured while Creating the post" , error)
+            console.log("Error Occured while Creating the post", error)
         }
     }
-    
-    async updatePost(slug, {title, content, featuredimg,status,subPara,author}) {
-        try{
-            return await  this.databases.updateDocument(
+
+    async updatePost(slug, { title, content, featuredimg, status, subPara, author }) {
+        try {
+            return await this.databases.updateDocument(
                 conf.appwriteDatabaseId,
                 conf.appwriteCollectionId,
                 slug,
@@ -57,22 +58,23 @@ export class DBservice{
                     featuredimg,
                     status,
                     subPara,
-                    author
+                    author,
+                    CreatedDate
                 }
             )
-        }   
-        catch(error){
-                console.log("Error Occured while updating document " , error )
-        }     
+        }
+        catch (error) {
+            console.log("Error Occured while updating document ", error)
+        }
     }
 
-    async getPost(slug){
+    async getPost(slug) {
         try {
             return await this.databases.getDocument(
                 conf.appwriteDatabaseId,
                 conf.appwriteCollectionId,
                 slug
-                
+
             )
         } catch (error) {
             console.log("Error Occured while fetching post ", error);
@@ -80,7 +82,7 @@ export class DBservice{
         }
     }
 
-    async deletePost(slug){
+    async deletePost(slug) {
         try {
             return await this.databases.deleteDocument(
                 conf.appwriteDatabaseId,
@@ -88,12 +90,12 @@ export class DBservice{
                 slug
             )
         } catch (error) {
-            console.log("Error Occured while deleting post ", error);      
+            console.log("Error Occured while deleting post ", error);
             return false
         }
     }
 
-    async getPosts(queries = [Query.equal('status', 'active')]){
+    async getPosts(queries = [Query.equal('status', 'active')]) {
         try {
             return await this.databases.listDocuments(
                 conf.appwriteDatabaseId,
@@ -101,12 +103,12 @@ export class DBservice{
                 queries
             )
         } catch (error) {
-            console.log("Error Occured while Fetching all posts " ,error)
+            console.log("Error Occured while Fetching all posts ", error)
             return false;
         }
     }
 
-    async uploadFile(file){
+    async uploadFile(file) {
         try {
             return await this.bucket.createFile(
                 conf.appwriteBucketId,
@@ -114,19 +116,19 @@ export class DBservice{
                 file
             )
         } catch (error) {
-            console.log("Error Occured while Uploading the document " , error);
+            console.log("Error Occured while Uploading the document ", error);
             return false
         }
     }
 
-    getFilePreview(fileId){
+    getFilePreview(fileId) {
         return this.bucket.getFilePreview(
             conf.appwriteBucketId,
             fileId
         )
     }
 
-    async deleteFile(fileId){
+    async deleteFile(fileId) {
         try {
             await this.bucket.deleteFile(
                 conf.appwriteBucketId,
@@ -134,7 +136,7 @@ export class DBservice{
             )
             return true
         } catch (error) {
-            console.log("Error Occured while Deleting the document " , error);    
+            console.log("Error Occured while Deleting the document ", error);
             return false;
         }
     }
