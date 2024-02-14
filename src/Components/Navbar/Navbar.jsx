@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import Logo from "./Logo";
-import { authLoginUser, authLogoutUser } from "../../Appwrite/AppwriteAuth";
+import { authLogoutUser } from "../../Appwrite/AppwriteAuth";
 import { useDispatch } from "react-redux";
 import { logout } from "../../Store/Slices/AuthSlice";
 
