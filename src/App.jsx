@@ -1,11 +1,12 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
-import LoginPage from "./Pages/LoginPage.jsx";
-import UnderConstruction from "./Pages/UnderConstruction.jsx";
-import SignUpPage from "./Pages/SignUpPage.jsx";
-import AllPost from "./Pages/AllPost.jsx";
-import Post from "./Pages/Post.jsx";
-import Layout from "./Pages/Layout.jsx";
+import {
+  AllPost,
+  LoginPage,
+  Post,
+  SignUpPage,
+  UnderConstruction,
+} from "./Pages";
 
 function App() {
   return (
