@@ -2,11 +2,12 @@ import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import {
   AllPost,
+  Layout,
   LoginPage,
   Post,
   SignUpPage,
   UnderConstruction,
-} from "./Pages";
+} from "./Pages/index.js";
 
 function App() {
   return (
