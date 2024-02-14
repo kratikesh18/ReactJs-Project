@@ -1,7 +1,4 @@
-import { useState } from "react";
 import "./App.css";
-import Navbar from "./Components/Navbar/NavBar.jsx";
-import { useSelector } from "react-redux";
 import { Routes, Route } from "react-router-dom";
 import Layout from "./Pages/Layout.jsx";
 import LoginPage from "./Pages/LoginPage.jsx";
@@ -9,6 +6,7 @@ import UnderConstruction from "./Pages/UnderConstruction.jsx";
 import SignUpPage from "./Pages/SignUpPage.jsx";
 import AllPost from "./Pages/AllPost.jsx";
 import Post from "./Pages/Post.jsx";
+
 function App() {
   return (
     <div>

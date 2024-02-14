@@ -2,9 +2,9 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import Logo from "./Logo";
-import { authLogoutUser } from "../../Appwrite/AppwriteAuth";
+import { authLogoutUser } from "../../Appwrite/AppwriteAuth.js";
 import { useDispatch } from "react-redux";
-import { logout } from "../../Store/Slices/AuthSlice";
+import { logout } from "../../Store/Slices/AuthSlice.js";
 
 
 function Navbar() {
