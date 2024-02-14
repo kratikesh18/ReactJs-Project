@@ -1,90 +1,63 @@
-import React, { useState, useEffect } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
-import dbService from "../appwrite/config";
-import { Button, Container } from "../Components";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { getFilePreview, getPost } from "../Appwrite/AppwriteConf";
 import parse from "html-react-parser";
-import { useSelector } from "react-redux";
 
-export default function Post() {
-    const [post, setPost] = useState(null);
-    const { slug } = useParams();
-    const navigate = useNavigate();
+function Post() {
+  const [postData, setPostData] = useState(null);
+  const { slug } = useParams();
+  const [loading, setLoading] = useState(false);
+  useEffect(() => {
+    setLoading(true);
+    getPost(slug).then((post) => setPostData(post));
+    setLoading(false);
+  }, [slug]);
 
-    const userData = useSelector((state) => state.auth.userData);
+  //   const post = {
+  //     title: "Test 2",
+  //     status: "active",
+  //     featuredimg: "658f20562d4964cc06c1",
+  //     userId: "658c6d9f49656c1282fc",
+  //     author: "admin",
+  //     subPara: "subpara test2",
+  //     content: "this is the content for the test 2 ",
+  //     CreatedDate: null,
+  //     $id: "test-2",
+  //     $createdAt: "2023-12-29T19:39:03.287+00:00",
+  //     $updatedAt: "2024-01-11T12:20:16.916+00:00",
+  //     $permissions: [
+  //       'read("user:658c6d9f49656c1282fc")',
+  //       'update("user:658c6d9f49656c1282fc")',
+  //       'delete("user:658c6d9f49656c1282fc")',
+  //     ],
+  //     $databaseId: "65833dc533024d76d80f",
+  //     $collectionId: "65833fc66c50cc0e0b56",
+  //   };
+  const dateRegex = /(\d{4}-\d{2}-\d{2})/;
 
-    const isAuthor = post && userData ? post.userId == userData.$id :false;
-    const userName = userData.name;
-    const isAdmin = post && userData ? userName === "Kartikesh":false;
-
-    useEffect(() => {
-        if (slug) {
-            dbService.getPost(slug).then((post) => {
-                if (post) setPost(post);
-                else navigate("/");
-            });
-        } else {
-            navigate("/");
-        }
-    }, [slug, navigate]);
-
-    const deletePost = () => {
-        dbService.deletePost(post.$id).then((status) => {
-            if (status) {
-                dbService.deleteFile(post.featuredimg);
-                navigate("/");
-            }
-        });
-    };
-
-    
-    return post ? (
+  if (loading) {
+    return <div>Loading</div>;
+  }
+  return (
+    postData && (
+      <div className="w-[90%] mx-auto mt-10">
         <div>
-            <Container className="flex justify-center items-center  ">
-                <div className="flex flex-col justify-center items-center w-[85%] overflow-hidden  gap-4  ">
-                    <div className="rounded-md shadow-2xl overflow-hidden">
-                    <img
-                        className="h-[15rem] w-full  shadow-black/60"
+          <img
+            className="rounded-md shadow-md w-full h-full"
+            src={getFilePreview(postData?.featuredimg)}
+            alt=""
+          />
 
-                        src={dbService.getFilePreview(post.featuredimg)}
-
-                        alt={post.title}
-                        />
-                    </div>
-                    
-
-                    <div className="w-[90%]">
-                        
-                        <div>
-                            <h1 className="text-xl font-bold ">{post.title}</h1>
-                            <p className="px-1 font-semibold text-gray-600">By, <span className="italic font-bold">{post.author}</span></p>
-                            <p className="px-1 font-semibold text-gray-600">at, <span className="italic font-bold">{post.CreatedDate}</span></p>
-                        </div>
-
-                        <div className=" browser-css block"> 
-                            {parse(post.content)} 
-                        </div>
-                        
-                    </div>            
-
-                    {(isAuthor || isAdmin )&&  (
-                        <div className="flex flex-col gap-[0.2rem]"> 
-                            <h4>Hey {userData.name} do you want   </h4> 
-                        <div className="flex gap-4 ">
-
-                            <Link to={`/edit-post/${post.$id}`}>
-                                <Button className="bg-purple-800 px-5 rounded-md">Edit</Button>
-                            </Link>
-
-                            <Button className="rounded-md bg-red-800"  onClick={deletePost}>Delete</Button>
-                        </div>
-                    </div>
-                    )}
-                    <div className=" text-sm font-extralight">CurrentUser is : {userName}</div>
-                </div>
-            </Container>
-               {/* <div className=" browser-css  "> 
-               {parse(post.content)} 
-           </div> */}
+          <div className="flex justify-between p-3">
+            <h2 className="text-xl font-semibold    ">{postData?.title}</h2>
+            <span>{postData?.$createdAt.match(dateRegex)[0]}</span>
+          </div>
+          <span>by {postData?.author}</span>
+          <div>{parse(postData?.content)}</div>
         </div>
-    ) : null;
+      </div>
+    )
+  );
 }
+
+export default Post;

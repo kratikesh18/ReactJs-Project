@@ -1,45 +1,28 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useState } from "react";
 import "./App.css";
-import authServices from "./appwrite/auth";
-import { login, logout } from "./Store/authSlice";
-import Header from "./Components/Header/Header";
-import Footer from "./Components/Footer/Footer";
-import { Outlet } from "react-router-dom";
-
-
+import Navbar from "./Components/Navbar/Navbar.jsx";
+import { useSelector } from "react-redux";
+import { Routes, Route } from "react-router-dom";
+import Layout from "./Pages/Layout.jsx";
+import LoginPage from "./Pages/LoginPage.jsx";
+import UnderConstruction from "./Pages/UnderConstruction.jsx";
+import SignUpPage from "./Pages/SignUpPage.jsx";
+import AllPost from "./Pages/AllPost.jsx";
+import Post from "./Pages/Post.jsx";
 function App() {
-  // console.log(process.env.REACT_APP_APPWRITE_URL)
-  //this is for the create-react-app not for vite created react app for this below syntax is used
-
-  // console.log(import.meta.env.VITE_APPWRITE_URL)
-
-  // we need 2 states
-  const [loading, setLoading] = useState(true);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    authServices
-      .getCurrentUser()
-      .then((userData) => {
-        if (userData) {
-          dispatch(login({ userData }));
-        } else {
-          dispatch(logout());
-        }
-      })
-      .finally(() => setLoading(false));
-  }, []);
-
-  return !loading ? (
+  return (
     <div>
-      <Header />
-      <main>
-        <Outlet />
-      </main>
-      <Footer />
+      <Layout />
+      <Routes>
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/signup" element={<SignUpPage />} />
+        <Route path="/all-posts" element={<AllPost />} />
+        <Route path="/post/:slug" element={<Post />} />
+        <Route path="*" element={<UnderConstruction />} />
+      </Routes>
+      ;
     </div>
-  ) :null;
+  );
 }
 
 export default App;
